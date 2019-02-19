@@ -40,10 +40,11 @@ exports.sourceNodes = async (
 
     return nodeData
   }
+
   const products = await MoltinGateway({
     client_id: configOptions.key,
   })
-    .Products.With(configOptions.products)
+    .Products.Filter({eq:{brand:{id:configOptions.brandId}}}).With(configOptions.products)
     .All()
 
   const mapProductToConfigOptions = [

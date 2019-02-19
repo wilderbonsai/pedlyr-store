@@ -11,8 +11,6 @@ const mapProductsToItems = products =>
         originalId,
         meta,
         mainImage,
-        background_colour,
-        new: isNew,
       },
     }) => {
       const price = meta.display_price.with_tax.formatted || null
@@ -22,16 +20,11 @@ const mapProductsToItems = products =>
         childKey: originalId,
         image: (
           <Image>
-            {isNew ? (
-              <Label color="red" ribbon style={{ zIndex: '1' }}>
-                New!
-              </Label>
-            ) : null}
             <Img
               sizes={mainImage.childImageSharp.sizes}
               alt={name}
               style={{
-                background: `${background_colour || '#fafafa'}`,
+                background: '#fafafa',
               }}
             />
           </Image>
