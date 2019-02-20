@@ -1,32 +1,23 @@
 import React from 'react'
 import { Card, Image, Label } from 'semantic-ui-react'
-import Img from 'gatsby-image'
 import Link from 'gatsby-link'
 
-const mapProductsToItems = products =>
+const mapProductsToItems = (products, images) =>
   products.map(
     ({
-      node: {
         name,
-        originalId,
+        id,
         meta,
-        mainImage,
-      },
-    }) => {
+        relationships,
+    },index) => {
       const price = meta.display_price.with_tax.formatted || null
       return {
         as: Link,
-        to: `/product/${originalId}/`,
-        childKey: originalId,
+        to: `/product/${id}/`,
+        childKey: id,
         image: (
           <Image>
-            <Img
-              sizes={mainImage.childImageSharp.sizes}
-              alt={name}
-              style={{
-                background: '#fafafa',
-              }}
-            />
+            <img src={images[index].link.href} />
           </Image>
         ),
         header: name,
@@ -35,6 +26,6 @@ const mapProductsToItems = products =>
     }
   )
 
-export default ({ products }) => (
-  <Card.Group items={mapProductsToItems(products)} itemsPerRow={2} stackable />
+export default ({ products, images }) => (
+  <Card.Group items={mapProductsToItems(products, images)} itemsPerRow={2} stackable />
 )
