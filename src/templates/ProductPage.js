@@ -21,8 +21,8 @@ class ProductPageTemplate extends React.PureComponent {
     //   meta: data.meta,
     //   sku: data.sku,
     // }
-
-    if(!sizes) return null
+    //
+    // if(!sizes) return null
 
     return (
       <div>
