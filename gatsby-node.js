@@ -28,15 +28,17 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
           reject(result.errors)
         }
 
-        result.data.allMoltinProduct.edges.forEach(edge => {
-          createPage({
-            path: `/product/${edge.node.originalId}/`,
-            component: productPageTemplate,
-            context: {
-              originalId: edge.node.originalId,
-            },
+        if(result.data) {
+          result.data.allMoltinProduct.edges.forEach(edge => {
+            createPage({
+              path: `/product/${edge.node.originalId}/`,
+              component: productPageTemplate,
+              context: {
+                originalId: edge.node.originalId,
+              },
+            })
           })
-        })
+        }
       })
     )
   })

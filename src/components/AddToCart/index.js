@@ -1,5 +1,5 @@
 import React from 'react'
-import { Input, Icon, Transition } from 'semantic-ui-react'
+import { Input, Icon, Transition, Button } from 'semantic-ui-react'
 import CartContext from '../Context/CartContext'
 
 const Moltin = require('../../../lib/moltin')
@@ -74,23 +74,7 @@ export default class AddToCart extends React.Component {
       <CartContext.Consumer>
         {context => (
           <React.Fragment>
-            <Input
-              type="number"
-              placeholder="Quantity"
-              value={quantity}
-              min={1}
-              step={1}
-              error={!!error}
-              onChange={e => this._handleChange(e)}
-              action={{
-                color: 'orange',
-                content: 'Add to Cart',
-                icon: 'plus cart',
-                onClick: e => this._handleSubmit(e, context),
-                loading,
-                disabled: loading,
-              }}
-            />
+            <Button size="big" onClick={(e) => this._handleSubmit(e, context)}>Add To Cart</Button>
             {error && (
               <div style={{ color: 'red', position: 'absolute' }}>{error}</div>
             )}

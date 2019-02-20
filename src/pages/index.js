@@ -11,9 +11,13 @@ class StoreIndex extends React.Component {
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
     const products = get(this, 'props.data.allMoltinProduct.edges')
-    const filterProductsWithoutImages = products.filter(
-      v => v.node.includedData.main_image
-    )
+    const listedProducts = []
+    if(products){
+      const listedProducts = products.filter(
+          v => v.node.includedData.main_image
+      )
+    }
+
     return (
       <div>
         <Helmet title={siteTitle} />
@@ -22,7 +26,7 @@ class StoreIndex extends React.Component {
             <Image src={logo} alt={'logo'}/>
           </Header.Content>
         </Header>
-        <ProductList products={filterProductsWithoutImages} />
+        <ProductList products={listedProducts} />
       </div>
     )
   }
@@ -50,6 +54,9 @@ export const pageQuery = graphql`
                 currency
                 formatted
               }
+            }
+            stock {
+              level
             }
           }
           includedData {
