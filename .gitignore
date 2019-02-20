@@ -6,3 +6,5 @@ public
 .cache/
 localStorage/
 .idea/
+.env.production
+.env.development
