@@ -11,9 +11,11 @@ class StoreIndex extends React.Component {
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
     const products = get(this, 'props.data.allMoltinProduct.edges')
-    const listedProducts = []
+    console.log(products)
+    let listedProducts = []
     if(products){
-      const listedProducts = products.filter(
+      console.log()
+      listedProducts = products.filter(
           v => v.node.includedData.main_image
       )
     }
