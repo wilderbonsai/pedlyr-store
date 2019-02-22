@@ -53,7 +53,7 @@ class StoreIndex extends React.Component {
         <Helmet title={siteTitle} />
         <Header as="h3" icon textAlign="center" style={{ marginBottom: '2em' }}>
           <Header.Content style={{ width: '60%', margin: '0 auto' }}>
-            <Image src={logo} alt={'logo'}/>
+            <h1>Store</h1>
           </Header.Content>
         </Header>
         <ProductList products={listedProducts} images={images}/>
