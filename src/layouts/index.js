@@ -8,6 +8,8 @@ import AuthProvider from '../components/Context/AuthProvider'
 import CartProvider from '../components/Context/CartProvider'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import AdminMenu from '../components/AdminMenu'
+import AddItemModal from '../components/AddItemModal'
 
 class Layout extends React.PureComponent {
   render() {
@@ -46,16 +48,24 @@ class Layout extends React.PureComponent {
               href={withPrefix('/favicons/favicon-16x16.png')}
             />
           </Helmet>
+          <AdminMenu>
           <Headroom
             upTolerance={10}
             downTolerance={10}
             style={{ zIndex: '20', height: '6.5em' }}
           >
             <Header location={location} />
+
           </Headroom>
-          <Container text>{children()}</Container>
+
+          <Container text>
+            <AddItemModal open={true}/>
+            {children()}</Container>
+
           <Footer />
+          </AdminMenu>
         </CartProvider>
+
       </AuthProvider>
     )
   }

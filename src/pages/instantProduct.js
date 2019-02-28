@@ -1,9 +1,11 @@
 /* eslint-disable */
 
 import React from 'react'
+import get from 'lodash/get'
 import { Image, Header } from 'semantic-ui-react'
 import Helmet from 'react-helmet'
 import ProductList from '../components/ProductList'
+import logo from '../images/ill-short-dark.svg'
 const MoltinGateway = require(`@moltin/sdk`).gateway
 
 class StoreIndex extends React.Component {
@@ -19,16 +21,13 @@ class StoreIndex extends React.Component {
     const products = await MoltinGateway({
       client_id: process.env.MOLTIN_CLIENT_ID,
     })
-    .Products.Filter({eq:{brand:{id:process.env.MOLTIN_BRAND_ID}}}).With(['main_images'])
-    .All()
+        .Products.Filter({eq:{brand:{id:process.env.MOLTIN_BRAND_ID}}}).With(['main_images'])
+        .All()
 
 
     if(products.data) {
-      console.log(products)
       this.setState({products:products.data, images:products.included.main_images})
     }
-
-
 
 
   }
@@ -50,15 +49,14 @@ class StoreIndex extends React.Component {
 
 
     return (
-      <div>
-        <Helmet title={siteTitle} />
-        <Header as="h3" icon textAlign="center" style={{ marginBottom: '2em' }}>
-          <Header.Content style={{ width: '60%', margin: '0 auto' }}>
-            <h1>Store</h1>
-          </Header.Content>
-        </Header>
-        <ProductList products={listedProducts} images={images}/>
-      </div>
+        <div>
+          <Helmet title={siteTitle} />
+          <Header as="h3" icon textAlign="center" style={{ marginBottom: '2em' }}>
+            <Header.Content style={{ width: '60%', margin: '0 auto' }}>
+              <h1>Test</h1>
+            </Header.Content>
+          </Header>
+        </div>
     )
   }
 }
