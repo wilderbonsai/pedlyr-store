@@ -3,10 +3,9 @@ import Helmet from 'react-helmet'
 import CartItemList from '../components/CartItemList/'
 import CartSummary from '../components/CartSummary/'
 import CartContext from '../components/Context/CartContext'
+import Moltin from '../service/Moltin'
 
-const Moltin = require('../../lib/moltin')
-
-export default class Cart extends React.Component {
+class Cart extends React.Component {
   state = {
     items: [],
     loading: true,
@@ -100,3 +99,5 @@ export default class Cart extends React.Component {
     )
   }
 }
+
+export default Cart

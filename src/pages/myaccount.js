@@ -1,11 +1,11 @@
 import React from 'react'
-import { navigateTo } from 'gatsby-link'
+import { navigateTo } from 'gatsby'
 import Helmet from 'react-helmet'
 import OrderItemList from '../components/OrderItemList'
 
-import { getOrders } from '../../lib/moltin'
+import { getOrders } from '../service/Moltin'
 
-export default class MyAccount extends React.Component {
+ class MyAccount extends React.Component {
   state = {
     loading: true,
     orders: [],
@@ -49,3 +49,5 @@ export default class MyAccount extends React.Component {
     )
   }
 }
+
+export default MyAccount

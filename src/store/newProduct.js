@@ -8,3 +8,5 @@ const newProduct = store({
   size:''
 })
 
+export default newProduct;
+

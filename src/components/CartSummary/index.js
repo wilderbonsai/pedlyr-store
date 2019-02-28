@@ -2,7 +2,7 @@ import React from 'react'
 import StripeCheckout from 'react-stripe-checkout'
 import { Button, Segment, Divider } from 'semantic-ui-react'
 
-export default ({
+const Summary = ({
   handleCheckout,
   display_price: {
     with_tax: { amount, currency, formatted },
@@ -31,3 +31,5 @@ export default ({
     </Segment>
   </div>
 )
+
+export default Summary

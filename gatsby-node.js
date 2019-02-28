@@ -74,10 +74,12 @@ exports.onCreateNode = async ({ node, boundActionCreators, cache, store }) => {
   }
 }
 
-exports.modifyWebpackConfig = ({ config }) => {
-  config.merge({
-    node: { fs: 'empty' },
-  })
+exports.onCreateWebpackConfig = ({ actions }) => {
 
-  return config
+  actions.setWebpackConfig({
+    resolve: {
+      modules: [path.resolve(__dirname, "src"), "node_modules"],
+    },
+    node: {fs: 'empty'},
+  })
 }

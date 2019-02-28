@@ -5,7 +5,7 @@ import { Item, Label } from 'semantic-ui-react'
 
 import AddToCart from '../AddToCart'
 
-export default ({ id, name, meta, sku, mainImage, description, stock }) => (
+ const Summary = ({ id, name, meta, sku, mainImage, description, stock }) => (
   <Item.Group>
 {meta.stock}
     <Item style={{ alignItems: 'center' }}>
@@ -29,3 +29,4 @@ export default ({ id, name, meta, sku, mainImage, description, stock }) => (
     </Item>
   </Item.Group>
 )
+export default Summary

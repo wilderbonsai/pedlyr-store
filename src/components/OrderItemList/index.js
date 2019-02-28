@@ -1,8 +1,8 @@
 import React from 'react'
-import Link from 'gatsby-link'
+import Link from 'gatsby'
 import { Header, Loader, Message, Label, Segment } from 'semantic-ui-react'
 
-export default ({ orders, loading }) => {
+const ItemList =  ({ orders, loading }) => {
   if (loading) return <Loader active inline="centered" />
 
   if (orders.length === 0) {
@@ -84,3 +84,5 @@ export default ({ orders, loading }) => {
     </div>
   )
 }
+
+export default ItemList

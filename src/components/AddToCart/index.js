@@ -1,8 +1,8 @@
 import React from 'react'
-import { Input, Icon, Transition, Button } from 'semantic-ui-react'
+import { Icon, Transition, Button } from 'semantic-ui-react'
 import CartContext from '../Context/CartContext'
 
-const Moltin = require('../../../lib/moltin')
+import Moltin from '../../service/Moltin'
 
 export default class AddToCart extends React.Component {
   state = {

@@ -2,8 +2,7 @@ import React from 'react'
 import Actions from '../pageActions'
 import { Grid, Button } from 'semantic-ui-react'
 import styled from 'styled-components'
-
-import { Card } from 'semantic-ui-react'
+import { createNewProduct } from '../../../service/Moltin'
 
 const Divider = styled.div`
   width: .3em;
@@ -41,11 +40,20 @@ const StyledCard = styled.div`
   
 `
 
+ const processNext = async () => {
+       console.log('loading')
+    await createNewProduct()
+
+       console.log('finished')
+      next()
+}
 
 const ButtonExampleGroup = ({next, previous}) => (
     <Actions backText="Back" nextText="Create Item" backAction={previous} nextAction={() => processNext(next)} >
       <h2>How big is the item?</h2>
-    <Button.Group size="massive" fluid>
+      (This determines the delivery price for the buyer)
+      <br/>
+      <Button.Group size="massive" fluid>
       <StyledButton>S</StyledButton>
       <Divider/>
       <StyledButton>M</StyledButton>
@@ -54,14 +62,6 @@ const ButtonExampleGroup = ({next, previous}) => (
       <Divider/>
       <StyledButton>XL</StyledButton>
     </Button.Group>
-
-        <StyledCard >
-          Test
-        </StyledCard>
-
-        <StyledCard >
-test
-        </StyledCard>
 
       </Actions>
 )

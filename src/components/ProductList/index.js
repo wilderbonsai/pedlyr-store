@@ -1,6 +1,6 @@
 import React from 'react'
 import { Card, Image, Label } from 'semantic-ui-react'
-import Link from 'gatsby-link'
+import Link from 'gatsby'
 
 const mapProductsToItems = (products, images) =>
   products.map(
@@ -26,6 +26,8 @@ const mapProductsToItems = (products, images) =>
     }
   )
 
-export default ({ products, images }) => (
+const List = ({ products, images }) => (
   <Card.Group items={mapProductsToItems(products, images)} itemsPerRow={2} stackable />
 )
+
+export default List

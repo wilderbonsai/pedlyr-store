@@ -1,7 +1,7 @@
 require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 })
-
+var proxy = require("http-proxy-middleware")
 module.exports = {
   siteMetadata: {
     title: 'Gatsby starter ecommerce',
@@ -11,6 +11,7 @@ module.exports = {
   },
   pathPrefix: '/gatsby-starter-ecommerce',
   plugins: [
+    'gatsby-plugin-resolve-src',
     {
       resolve: 'gatsby-source-moltin',
       options: {
@@ -80,4 +81,15 @@ module.exports = {
     `gatsby-plugin-react-helmet`,
     'gatsby-plugin-react-next',
   ],
+  developMiddleware: app => {
+    app.use(
+        "/.netlify/functions/",
+        proxy({
+          target: "http://localhost:9000",
+          pathRewrite: {
+            "/.netlify/functions/": "",
+          },
+        })
+    )
+  },
 }

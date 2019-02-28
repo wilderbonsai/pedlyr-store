@@ -1,0 +1,15 @@
+ event-queue-existing-user-invite	0
+ event-queue-new-password-reset-request	0
+ event-queue-task-applicants-notifications-expiration	0
+ event-queue-task-applicants-expire	0
+ event-queue-user-invite	0
+email-send-queue	0
+ event-queue-applicant-create	0
+ event-queue-user-activated	0
+ event-queue-task-intervals-update	0
+ event-queue-task-intervals-notifications-weekly	0
+ event-queue-user-create	0
+ event-queue-task-users-reminders-sixth-day	0
+ event-queue-user-enabled	0
+ event-queue-task-users-reminders-activation	0
+ event-queue-purchase-event	0

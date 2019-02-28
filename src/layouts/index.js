@@ -2,7 +2,7 @@ import React from 'react'
 import { Container } from 'semantic-ui-react'
 import Headroom from 'react-headroom'
 import Helmet from 'react-helmet'
-import { withPrefix } from 'gatsby-link'
+import { withPrefix } from 'gatsby'
 import 'semantic-ui-css/semantic.min.css'
 import AuthProvider from '../components/Context/AuthProvider'
 import CartProvider from '../components/Context/CartProvider'
@@ -60,7 +60,7 @@ class Layout extends React.PureComponent {
 
           <Container text>
             <AddItemModal open={true}/>
-            {children()}</Container>
+            {children}</Container>
 
           <Footer />
           </AdminMenu>

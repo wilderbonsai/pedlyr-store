@@ -1,12 +1,11 @@
 /* eslint-disable */
 
 import React from 'react'
-import get from 'lodash/get'
 import { Image, Header } from 'semantic-ui-react'
 import Helmet from 'react-helmet'
-import ProductList from '../components/ProductList'
-import logo from '../images/ill-short-dark.svg'
-const MoltinGateway = require(`@moltin/sdk`).gateway
+import Moltin from '@moltin/sdk'
+
+const MoltinGateway = Moltin.gateway
 
 class StoreIndex extends React.Component {
 

@@ -4,6 +4,7 @@ import Name from './pages/name'
 import Description from './pages/description'
 import Price from './pages/price'
 import Size from './pages/size'
+import Success from './pages/success'
 import { Wizard, Steps, Step } from 'react-albus';
 import { Line } from 'rc-progress';
 
@@ -35,19 +36,19 @@ class ModalExampleScrollingContent extends React.Component {
 
             <Steps>
                 <Step
-                  id="merlin"
+                  id="name"
                   render={({ next }) => (
                       <Name next={next} previous={this.handleClose}/>
                   )}
                 />
                 <Step
-                  id="gandalf"
+                  id="description"
                   render={({ next, previous }) => (
                       <Description next={next} previous={previous} />
                 )}
                 />
                 <Step
-                id="dumbledore"
+                id="price"
                 render={({ next, previous }) => (
                     <Price next={next} previous={previous} />
                 )}
@@ -58,12 +59,32 @@ class ModalExampleScrollingContent extends React.Component {
                       <Size next={next} previous={previous} />
                   )}
               />
-              </Steps>
-            <Line
-                strokeColor="#0fc177"
-                percent={(steps.indexOf(step) + 1) / steps.length * 100}
-                className="pad-b"
-            />
+              <Step
+                  id="success"
+                  render={({ next, previous }) => (
+                      <Success next={next} end={this.handleClose} />
+                  )}
+              />
+              <Step
+                  id="success"
+                  render={({ next, previous }) => (
+                      <Success next={next} end={this.handleClose} />
+                  )}
+              />
+              <Step
+                  id="upload"
+                  render={({ next, previous }) => (
+                      <Success next={next} end={this.handleClose} />
+                  )}
+              />
+          </Steps>
+            {(steps.indexOf(step) + 1) <= 4 &&
+              <Line
+                  strokeColor="#0fc177"
+                  percent={(steps.indexOf(step) + 1) / 4 * 100}
+                  className="pad-b"
+              />
+            }
           </div>
       )
   }
@@ -78,12 +99,14 @@ class ModalExampleScrollingContent extends React.Component {
         <Modal open={open} closeOnDimmerClick={false} closeOnEscape basic size="tiny" scrolling
                onClose={this.handleClose}  >
           <Modal.Header></Modal.Header>
-          <Modal.Content image scrolling>
+          <Modal.Content scrolling>
             <Modal.Description>
+              <div style={{width:'100%'}}>
               <Wizard
                   render={({ step, steps }) => this.renderWizard({step, steps})}
               >
               </Wizard>
+                </div>
             </Modal.Description>
           </Modal.Content>
 

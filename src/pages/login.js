@@ -1,5 +1,5 @@
 import React from 'react'
-import { navigateTo } from 'gatsby-link'
+import { navigateTo } from 'gatsby'
 import {
   Header,
   Form,
@@ -9,10 +9,10 @@ import {
   Message,
 } from 'semantic-ui-react'
 import Helmet from 'react-helmet'
-import { login } from '../../lib/moltin'
+import { login } from '../service/Moltin'
 import AuthContext from '../components/Context/AuthContext'
 
-export default class Login extends React.Component {
+class Login extends React.Component {
   state = {
     email: '',
     password: '',
@@ -117,3 +117,5 @@ export default class Login extends React.Component {
     )
   }
 }
+
+export default Login

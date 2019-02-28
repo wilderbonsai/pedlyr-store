@@ -4,7 +4,9 @@ import React from 'react'
 import { Image, Header } from 'semantic-ui-react'
 import Helmet from 'react-helmet'
 import ProductList from '../components/ProductList'
-const MoltinGateway = require(`@moltin/sdk`).gateway
+import { gateway as MoltinGateway }  from '@moltin/sdk'
+import Layout from 'layouts'
+
 
 class StoreIndex extends React.Component {
 
@@ -22,15 +24,10 @@ class StoreIndex extends React.Component {
     .Products.Filter({eq:{brand:{id:process.env.MOLTIN_BRAND_ID}}}).With(['main_images'])
     .All()
 
-
     if(products.data) {
-      console.log(products)
+      console.log(products, 'products')
       this.setState({products:products.data, images:products.included.main_images})
     }
-
-
-
-
   }
 
   render() {
@@ -50,7 +47,7 @@ class StoreIndex extends React.Component {
 
 
     return (
-      <div>
+      <Layout {...this.props}>
         <Helmet title={siteTitle} />
         <Header as="h3" icon textAlign="center" style={{ marginBottom: '2em' }}>
           <Header.Content style={{ width: '60%', margin: '0 auto' }}>
@@ -58,7 +55,7 @@ class StoreIndex extends React.Component {
           </Header.Content>
         </Header>
         <ProductList products={listedProducts} images={images}/>
-      </div>
+      </Layout>
     )
   }
 }
