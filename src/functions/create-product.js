@@ -12,7 +12,7 @@ const Moltin = MoltinGateway({
 
 exports.handler = async (event, context, callback) => {
 
-  const newProduct = JSON.parse(event.body.data)
+  const newProduct = JSON.parse(event.body)
 
   const product = {
     name: newProduct.name,

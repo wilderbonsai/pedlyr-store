@@ -2,7 +2,7 @@ import React from 'react'
 import Actions from '../pageActions'
 import { Grid, Button } from 'semantic-ui-react'
 import styled from 'styled-components'
-import { createNewProduct } from '../../../service/Moltin'
+import  { createNewProduct as createProduct} from '../../../service/Moltin'
 
 const Divider = styled.div`
   width: .3em;
@@ -40,12 +40,9 @@ const StyledCard = styled.div`
   
 `
 
- const processNext = async () => {
-       console.log('loading')
-    await createNewProduct()
-
-       console.log('finished')
-      next()
+ const processNext = async (next) => {
+    await createProduct()
+    next();
 }
 
 const ButtonExampleGroup = ({next, previous}) => (

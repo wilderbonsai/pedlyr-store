@@ -6,11 +6,9 @@ import newProduct from '../../store/newProduct'
 
 const MoltinGateway = Moltin.gateway
 
-const createNewProduct = async () => {
-  axios.post('/.netlify/functions/create-product', newProduct)
-      .then(function (response) {
-        console.log(response);
-      })
+export const createNewProduct = async () => {
+  return await axios.post('/.netlify/functions/create-product', newProduct)
+
 }
 
 
@@ -73,19 +71,6 @@ const register = ({ email, password, ...rest }) =>
 
 const getOrders = token => Moltin.Orders.With('items').All(token)
 
-export default {
-  createNewProduct,
-  getProducts,
-  getProductById,
-  addToCart,
-  getCartItems,
-  removeFromCart,
-  checkoutCart,
-  payForOrder,
-  register,
-  login,
-  getOrders,
-}
 
 
 

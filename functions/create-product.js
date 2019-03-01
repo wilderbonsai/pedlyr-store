@@ -2654,7 +2654,7 @@ function () {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            newProduct = JSON.parse(event.body.data);
+            newProduct = JSON.parse(event.body);
             product = {
               name: newProduct.name,
               slug: slugify(newProduct.name.toLowerCase()),
