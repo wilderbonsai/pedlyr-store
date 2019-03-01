@@ -5,6 +5,7 @@ import Description from './pages/description'
 import Price from './pages/price'
 import Size from './pages/size'
 import Success from './pages/success'
+import Upload from './pages/upload'
 import { Wizard, Steps, Step } from 'react-albus';
 import { Line } from 'rc-progress';
 
@@ -38,7 +39,8 @@ class ModalExampleScrollingContent extends React.Component {
                 <Step
                   id="name"
                   render={({ next }) => (
-                      <Name next={next} previous={this.handleClose}/>
+                  <Upload next={next} previous={this.handleClose}/>
+
                   )}
                 />
                 <Step
@@ -74,7 +76,7 @@ class ModalExampleScrollingContent extends React.Component {
               <Step
                   id="upload"
                   render={({ next, previous }) => (
-                      <Success next={next} end={this.handleClose} />
+                      <Upload next={next} end={this.handleClose} />
                   )}
               />
           </Steps>

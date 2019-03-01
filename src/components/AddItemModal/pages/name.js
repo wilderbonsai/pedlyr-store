@@ -1,11 +1,10 @@
 import React from 'react'
-import { Icon } from 'semantic-ui-react'
+import { Form } from 'formsy-semantic-ui-react';
 import  Input  from '../../Input'
 import Actions from '../pageActions'
 import newProduct from 'store/newProduct'
 
 const processNext = (next) => {
-
   next()
 }
 
@@ -24,14 +23,26 @@ class InputExampleFluid extends React.Component {
     this.setState({name:e.target.value})
   }
 
+  submitForm = () => {
+    if(this.ref && this.ref.form)  this.refs.form.submit()
+  }
+
   render() {
     const {next,previous} = this.props
     return (
-        <div>
-          <Actions backText="Cancel" nextText="Next" backAction={previous} nextAction={() => this.processNext(next)} >
-            <Input defaultValue={newProduct.name} autoFocus onChange={this.handleChange} size='huge' fluid  placeholder='Your new item name' />
+        <Form ref="form" onValidSubmit={ () => this.processNext(next) }>
+          <Actions backText="Cancel" nextText="Next" backAction={previous} nextAction={this.submitForm} >
+            <Input name="name"
+                   defaultValue={newProduct.name}
+                   autoFocus
+                   onChange={this.handleChange}
+                   size='huge'
+                   fluid
+                   placeholder='Your new item name'
+                   required
+            />
           </Actions>
-        </div>
+        </Form>
     )
   }
 }

@@ -1,5 +1,6 @@
 import React from 'react'
-import { Icon, Label } from 'semantic-ui-react'
+import { Label } from 'semantic-ui-react'
+import { Form } from 'formsy-semantic-ui-react';
 import  Input  from '../../Input'
 import Actions from '../pageActions'
 import newProduct from '../../../store/newProduct'
@@ -19,17 +20,31 @@ class InputExampleFluid extends React.Component {
     this.setState({price:e.target.value})
   }
 
+  submitForm = () => {
+    if(this.ref && this.ref.form) this.refs.form.submit()
+  }
+
+
   render() {
     const { next ,previous } = this.props
     return (
-        <div>
-          <Actions backText="Back" nextText="Next" backAction={previous} nextAction={() => this.processNext(next)} >
-            <Input defaultValue={newProduct.price} onChange={(e) => this.handleChange(e)} size='huge' fluid min="1" step="1" placeholder='Your Selling Price' labelPosition='right' type='number' >
+        <Form ref="form" onValidSubmit={ () => this.processNext(next) }>
+          <Actions backText="Back" nextText="Next" backAction={previous} nextAction={this.submitForm} >
+            <Input
+                name="price"
+                defaultValue={newProduct.price}
+                onChange={(e) => this.handleChange(e)}
+                size='huge'
+                fluid min="1"
+                step="1"
+                placeholder='Your Selling Price'
+                labelPosition='right'
+                type='number' >
               <Label basic>€</Label>
               <input />
             </Input>
           </Actions>
-        </div>
+        </Form>
     )
   }
 }

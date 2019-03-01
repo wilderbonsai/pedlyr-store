@@ -3,7 +3,7 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import get from 'lodash/get'
 import ProductSummary from '../components/ProductSummary'
-import ProductAttributes from '../components/ProductAttributes'
+import Layout from 'layouts'
 
 class ProductPageTemplate extends React.PureComponent {
   render() {
@@ -26,13 +26,14 @@ class ProductPageTemplate extends React.PureComponent {
 
     return (
       <div>
+        <Layout {...this.props}>
         <Helmet title={slug}>
           <title></title>
           <meta name="description" content="Nested component" />
           <meta property="og:title" content={data.name} />
         </Helmet>
         <ProductSummary {...product} />
-
+        </Layout>
       </div>
     )
   }

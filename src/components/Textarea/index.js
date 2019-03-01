@@ -1,10 +1,11 @@
-import { TextArea  } from 'semantic-ui-react'
+import { TextArea } from 'formsy-semantic-ui-react'
 import styled from 'styled-components'
 
 const StyledTextArea = styled(TextArea)`
-
-    border-radius: 0px !important;
-  
+    &&& textarea { border-radius: 0px !important; }
+    &&& label { 
+      display:none
+    }
 `
 
 export default StyledTextArea

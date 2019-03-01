@@ -14,16 +14,17 @@ const success = ({next, end}) => {
   return (
         <div>
         <h2>Congratulations!</h2>
-        Your item is successfuly created and is available for purchase through your store?
+        Your item is successfuly created!
         <br/>
-        <h2>Would you like to upload any photos for this new item now?
-       </h2>
-          (You can also do this later from your item's page)
-        <Button.Group size="massive" fluid>
+        <h3>Would you like to upload any photos for this new item now?
+       </h3>
+
+        <Button.Group size="huge" fluid>
           <Button onClick={end}>No</Button>
           <ButtonDivider/>
           <Button onClick={next}>Yes</Button>
         </Button.Group>
+          (You can also do this later from your item's page)
         </div>
   )
 }

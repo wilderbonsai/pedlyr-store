@@ -101,7 +101,6 @@ class MobileMenu extends Component {
             header
             active={activeItem === withPrefix('/')}
           >
-            <Logo />
             Store
           </Menu.Item>
           <Menu.Menu position="right">

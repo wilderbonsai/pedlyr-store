@@ -2628,18 +2628,26 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-// For more info, check https://www.netlify.com/docs/functions/#javascript-lambda-functions
 var MoltinGateway = __webpack_require__(31).gateway;
 
 var MemoryStorageFactory = __webpack_require__(31).MemoryStorageFactory;
 
 var slugify = __webpack_require__(110);
 
-var shortid = __webpack_require__(111);
+var shortid = __webpack_require__(111); //TODO Set up environment building for env variables with functions
+
+
+var client_id = 'ul3RvUZ3OK2niFsZ0KLFOGk4H25RZK2JaHJUHTxD5O';
+var secret_id = 'Mvyr6hsaLm6RZJHIUtIDPzkn3WaRR6fcMQngXMF1lx';
+
+if (process.env.MOLTIN_CLIENT_ID && process.env.MOLTIN_SECRET_ID) {
+  client_id = process.env.MOLTIN_CLIENT_ID;
+  secret_id = process.env.MOLTIN_SECRET_ID;
+}
 
 var Moltin = MoltinGateway({
-  client_id: process.env.MOLTIN_CLIENT_ID,
-  client_secret: process.env.MOLTIN_SECRET_ID,
+  client_id: client_id,
+  client_secret: secret_id,
   storage: new MemoryStorageFactory()
 });
 
@@ -2649,36 +2657,46 @@ function () {
   var _ref = _asyncToGenerator(
   /*#__PURE__*/
   regeneratorRuntime.mark(function _callee(event, context, callback) {
-    var newProduct, product, createdProduct;
+    var newProduct, uniqueId, product, createdProduct, brandId, brandIds;
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
             newProduct = JSON.parse(event.body);
+            uniqueId = shortid.generate();
             product = {
               name: newProduct.name,
-              slug: slugify(newProduct.name.toLowerCase()),
-              sku: shortid.generate(),
+              slug: uniqueId,
+              sku: uniqueId,
               description: newProduct.description,
               manage_stock: false,
               price: [{
-                amount: newProduct.price,
-                currency: 'EUR',
+                amount: newProduct.price * 100,
+                currency: 'USD',
                 includes_tax: true
               }],
-              status: 'live'
+              status: 'live',
+              commodity_type: 'physical'
             };
-            _context.next = 4;
+            _context.next = 5;
             return Moltin.Products.Create(product);
 
-          case 4:
+          case 5:
             createdProduct = _context.sent;
+            //TODO Refactor to use Webpack env variables
+            brandId = process.env.MOLTIN_BRAND_ID;
+            if (!brandId) brandId = '15953afc-f247-4882-9967-57451ea60cb8';
+            brandIds = [brandId];
+            _context.next = 11;
+            return Moltin.Products.UpdateRelationships(createdProduct.data.id, 'brand', brandIds);
+
+          case 11:
             callback(null, {
               statusCode: 200,
-              body: JSON.stringify(createdProduct)
+              body: 'Success'
             });
 
-          case 6:
+          case 12:
           case "end":
             return _context.stop();
         }

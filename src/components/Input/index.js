@@ -1,4 +1,4 @@
-import { Input } from 'semantic-ui-react'
+import { Input } from 'formsy-semantic-ui-react'
 import styled from 'styled-components'
 
 const StyledInput = styled(Input)`

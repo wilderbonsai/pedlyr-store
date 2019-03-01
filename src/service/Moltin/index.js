@@ -8,7 +8,10 @@ const MoltinGateway = Moltin.gateway
 
 export const createNewProduct = async () => {
   return await axios.post('/.netlify/functions/create-product', newProduct)
+}
 
+export const uploadProductImage = async (formData) => {
+  return await axios.post('/.netlify/functions/create-product', {body:formData})
 }
 
 
