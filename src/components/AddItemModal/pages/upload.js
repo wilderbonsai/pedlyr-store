@@ -19,13 +19,10 @@ const StyledDropzone = styled.div`
 `
 class Upload extends React.Component {
   onDrop = async (acceptedFiles, rejectedFiles) => {
-    console.log('dropped')
 
     // Do something with files
     acceptedFiles.forEach(async function(file) {
-      const formData = new FormData()
-      formData.append("file", file)
-      await uploadProductImage(formData)
+        await uploadProductImage(file)
     })
 
   }

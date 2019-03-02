@@ -1,6 +1,6 @@
 const MoltinGateway = require('@moltin/sdk').gateway
 
-const FormData = require("form-data")
+
 //TODO Set up environment building for env variables with functions
 let client_id = 'ul3RvUZ3OK2niFsZ0KLFOGk4H25RZK2JaHJUHTxD5O'
 let secret_id = 'Mvyr6hsaLm6RZJHIUtIDPzkn3WaRR6fcMQngXMF1lx'
@@ -15,23 +15,23 @@ const Moltin = MoltinGateway({
 })
 
 
-exports.handler = async (event, context, callback) => {​
+exports.handler = async (event, context, callback) => {
   const data = JSON.parse(event.body)
-  let formData = data.formData
 
-  const headers = {
-    "Content-Type": formData.getHeaders()["content-type"]
-  }
-  ​
-  formData.append("file_name", 'test.jpg')
-  formData.append("public", "true")
-
-  const data = {
-    body: formData
-  }
-  ​
-  Moltin
-      .post("files", data, headers)
-      .then(console.log(data))
-      .error(console.error(error))
+  console.log(data)
+  // const headers = {
+  //   "Content-Type": formData.getHeaders()["content-type"]
+  // }
+  // ​
+  // formData.append("file_name", 'test.jpg')
+  // formData.append("public", "true")
+  //
+  // const data = {
+  //   body: formData
+  // }
+  // ​
+  // Moltin
+  //     .post("files", data, headers)
+  //     .then(console.log(data))
+  //     .error(console.error(error))
 };

@@ -22,7 +22,7 @@ const success = ({next, end}) => {
         <Button.Group size="huge" fluid>
           <Button onClick={end}>No</Button>
           <ButtonDivider/>
-          <Button onClick={next}>Yes</Button>
+          <Button onClick={() => {next()}}>Yes</Button>
         </Button.Group>
           (You can also do this later from your item's page)
         </div>

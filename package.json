@@ -13,6 +13,7 @@
     "@babel/preset-env": "^7.3.4",
     "@babel/preset-flow": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
+    "@moltin/request": "^1.4.4",
     "@moltin/sdk": "^3.10.0",
     "axios": "^0.18.0",
     "babel-loader": "^8.0.5",

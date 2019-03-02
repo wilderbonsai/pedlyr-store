@@ -39,7 +39,7 @@ class ModalExampleScrollingContent extends React.Component {
                 <Step
                   id="name"
                   render={({ next }) => (
-                  <Upload next={next} previous={this.handleClose}/>
+                  <Name next={next} previous={this.handleClose}/>
 
                   )}
                 />
@@ -59,12 +59,6 @@ class ModalExampleScrollingContent extends React.Component {
                   id="size"
                   render={({ next, previous }) => (
                       <Size next={next} previous={previous} />
-                  )}
-              />
-              <Step
-                  id="success"
-                  render={({ next, previous }) => (
-                      <Success next={next} end={this.handleClose} />
                   )}
               />
               <Step

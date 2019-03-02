@@ -2,16 +2,30 @@ import 'regenerator-runtime/runtime'
 import Moltin from '@moltin/sdk'
 import axios from  'axios'
 import newProduct from '../../store/newProduct'
-
-
-const MoltinGateway = Moltin.gateway
+const FormData  = require("form-data")
+const { createClient } = require('@moltin/request')
 
 export const createNewProduct = async () => {
   return await axios.post('/.netlify/functions/create-product', newProduct)
 }
 
-export const uploadProductImage = async (formData) => {
-  return await axios.post('/.netlify/functions/create-product', {body:formData})
+export const uploadProductImage = async (file) => {
+
+
+  const moltin = new createClient({
+    client_id: process.env.MOLTIN_CLIENT_ID,
+    client_secret: process.env.MOLTIN_SECRET_ID
+  })
+
+
+  const formData = new FormData()
+  formData.append("file", file)
+
+  return await axios.post('https://api.moltin.com/v2/files', formData, {
+    headers: {
+      'Authorization':'Bearer 57b65106b6309e2b892507bc5d549126df21590a'
+    }
+  })
 }
 
 

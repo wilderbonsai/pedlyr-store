@@ -30,7 +30,7 @@ const PageActions = ({children, backText, backAction, nextText, nextAction}) => 
         {children}
         <NextButton float="right" size="big"  color="teal" style={{marginTop:'10px', borderRadius:'0px'}} fluid  onClick={nextAction}>
           {nextText}
-          </NextButton>
+        </NextButton>
       </div>
   )
 }
