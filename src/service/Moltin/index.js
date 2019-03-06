@@ -17,6 +17,7 @@ export const uploadProductImage = async (file, productId, main = false) => {
 
     const formData = new FormData()
     let response = {}
+    //TODO API key and preset in env
     formData.append('file', file)
     formData.append('api_key', '323576721245618')
     formData.append('upload_preset','wtszlrdd')
@@ -30,7 +31,7 @@ export const uploadProductImage = async (file, productId, main = false) => {
     }
 
     const url = response.data.url;
-
+    console.log(productId)
    return await linkImageUrlToProduct(url, productId, main)
 }
 

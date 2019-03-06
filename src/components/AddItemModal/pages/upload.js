@@ -23,20 +23,21 @@ class Upload extends React.Component {
     mainImageIndex: -1
   }
 
+
   onDrop = async (acceptedFiles, rejectedFiles) => {
+    console.log(newProduct)
     const self = this;
     // Do something with files
     var index = -1;
     acceptedFiles.forEach(async function(file) {
       try {
         var main = false
-        console.log(self.state.mainImageIndex)
         if(self.state.mainImageIndex === -1) {
           main = true
         }
         index++
-
-        const response = await uploadProductImage(file, '23694e19-192a-4469-81b9-bcead4d15f76', main)
+        console.log(newProduct.id)
+        const response = await uploadProductImage(file, newProduct.id, main)
         self.setState(state => {
           const images = [...state.images, response.data];
           return {
@@ -52,7 +53,7 @@ class Upload extends React.Component {
 
 
   render() {
-
+    console.log(newProduct)
     const { images } = this.state;
     return (
         <Dropzone onDrop={this.onDrop}>

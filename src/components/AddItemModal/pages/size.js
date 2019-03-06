@@ -43,7 +43,7 @@ const StyledCard = styled.div`
 
  const processNext = async (next) => {
     const product = await createProduct()
-    newProduct.id = product.id
+    newProduct.id = product.data.id
     next();
 }
 
