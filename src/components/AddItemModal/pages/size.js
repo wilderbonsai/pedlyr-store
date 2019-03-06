@@ -3,6 +3,7 @@ import Actions from '../pageActions'
 import { Grid, Button } from 'semantic-ui-react'
 import styled from 'styled-components'
 import  { createNewProduct as createProduct} from '../../../service/Moltin'
+import newProduct from '../../../store/newProduct'
 
 const Divider = styled.div`
   width: .3em;
@@ -41,7 +42,8 @@ const StyledCard = styled.div`
 `
 
  const processNext = async (next) => {
-    await createProduct()
+    const product = await createProduct()
+    newProduct.id = product.id
     next();
 }
 

@@ -4,7 +4,6 @@ import { Button } from 'semantic-ui-react'
 import ButtonDivider from '../../ButtonDivider'
 
 const processNext = (next) => {
-
   next()
 }
 

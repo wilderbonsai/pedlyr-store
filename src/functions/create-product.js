@@ -47,6 +47,6 @@ exports.handler = async (event, context, callback) => {
 
   callback(null, {
     statusCode: 200,
-    body: 'Success',
+    body: JSON.stringify(createdProduct.data),
   });
 };

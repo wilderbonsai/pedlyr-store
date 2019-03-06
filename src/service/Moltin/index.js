@@ -1,31 +1,54 @@
 import 'regenerator-runtime/runtime'
-import Moltin from '@moltin/sdk'
+import Moltin, { gateway as MoltinGateway } from '@moltin/sdk'
 import axios from  'axios'
 import newProduct from '../../store/newProduct'
+import AWS from 'aws-sdk'
 const FormData  = require("form-data")
 const { createClient } = require('@moltin/request')
+import shortid from 'shortid';
 
 export const createNewProduct = async () => {
   return await axios.post('/.netlify/functions/create-product', newProduct)
 }
 
-export const uploadProductImage = async (file) => {
+export const uploadProductImage = async (file, productId, main = false) => {
 
+    const CLOUD_NAME = 'dd3hsazbk'
 
-  const moltin = new createClient({
-    client_id: process.env.MOLTIN_CLIENT_ID,
-    client_secret: process.env.MOLTIN_SECRET_ID
-  })
-
-
-  const formData = new FormData()
-  formData.append("file", file)
-
-  return await axios.post('https://api.moltin.com/v2/files', formData, {
-    headers: {
-      'Authorization':'Bearer 57b65106b6309e2b892507bc5d549126df21590a'
+    const formData = new FormData()
+    let response = {}
+    formData.append('file', file)
+    formData.append('api_key', '323576721245618')
+    formData.append('upload_preset','wtszlrdd')
+    try {
+      response = await axios.post(
+          `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
+          formData,
+          {headers: {"X-Requested-With": "XMLHttpRequest"}})
+    } catch(error) {
+      throw new Error('There was an error uploading your file.');
     }
-  })
+
+    const url = response.data.url;
+
+   return await linkImageUrlToProduct(url, productId, main)
+}
+
+const linkImageUrlToProduct = async (url, productId, main) => {
+  let response = {}
+  try {
+    const body = {
+      productId,
+      url,
+      main
+    }
+    response =  await axios.post('/.netlify/functions/create-product-image-from-url', body)
+  } catch(error) {
+    console.log(error)
+    throw new Error('There was an processing your file.');
+  }
+
+  return response;
 }
 
 

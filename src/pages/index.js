@@ -7,7 +7,6 @@ import ProductList from '../components/ProductList'
 import { gateway as MoltinGateway }  from '@moltin/sdk'
 import Layout from 'layouts'
 
-
 class StoreIndex extends React.Component {
 
   constructor() {
@@ -25,15 +24,16 @@ class StoreIndex extends React.Component {
     .All()
 
     if(products.data) {
-      console.log(products, 'products')
-      this.setState({products:products.data, images:products.included.main_images})
+      this.setState({products:products.data})
+    }
+
+    if(products.included && products.included.main_images) {
+      this.setState({images:products.included.main_images})
     }
   }
 
   render() {
     const { products, images } = this.state
-    console.log(products, 'products')
-    console.log(images, 'images');
     const siteTitle = 'test'
     // const siteTitle = get(this, 'props.data.site.siteMetadata.title')
     // const products = get(this, 'props.data.allMoltinProduct.edges')
